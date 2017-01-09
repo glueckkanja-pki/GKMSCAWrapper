@@ -19,7 +19,7 @@ namespace MSCAWrapper {
 		/// Establish a new handle to Microsoft Certificate Services
 		/// </summary>
 		/// <param name="caConfiguration">A CA configuration string of the form "DNSName/CAName" as
-		/// specified the MSDN library for ICertView2::OpenConnection.</param>
+		/// specified by the MSDN library for ICertView2::OpenConnection.</param>
 		CertificateServices(System::String ^caConfiguration);
 
 		enum class RevocationReason {
