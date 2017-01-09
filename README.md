@@ -1,6 +1,10 @@
 # GKMSCAWrapper
 .NET wrapper library around ICertAdmin to manage Microsoft Certificate Services (Beta)
 
+## Examples
+
+The tool [GK MS CA Cleaner](https://github.com/glueckkanja-pki/MSCACleaner) is an example of how to use the library.
+
 ## Support
 
 Please open an issue if you have problems using the library GKMSCAWrapper or think you have found a bug. Professional support, including general PKI consulting, is available from [Glück & Kanja](https://www.glueckkanja.com/).
