@@ -7,7 +7,7 @@
 #pragma comment(lib, "ole32")		// COM
 #pragma comment(lib, "oleaut32")	// VARIANTs
 #pragma comment(lib, "Certidl")		// Certificate Services COM classes
-#pragma comment(lib, "Certadm")		// dito
+#pragma comment(lib, "Certadm")		// ditto
 
 namespace GK {
 namespace MSCAWrapper {
