@@ -42,6 +42,9 @@
     <ClCompile Include="NoRestriction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CertificateTemplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CertColumn.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NoRestriction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CertificateTemplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
