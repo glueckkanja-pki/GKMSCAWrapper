@@ -466,6 +466,10 @@ namespace MSCAWrapper {
 						//else
 						//{
 							System::Object ^val = System::Runtime::InteropServices::Marshal::GetObjectForNativeVariant(System::IntPtr(&varColumnData));
+						
+							if (val == nullptr)
+								val = System::DBNull::Value;
+						
 							drNew[lngCurrentColumn] = val;
 						//}
 
