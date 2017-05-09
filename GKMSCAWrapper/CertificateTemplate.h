@@ -1,5 +1,7 @@
 #pragma once
 
+struct IWebEnrlServer;	// imported in CertificateTemplate.cpp
+
 namespace GK {
 	namespace MSCAWrapper {
 		/// <summary>
@@ -11,6 +13,7 @@ namespace GK {
 		{
 		public:
 			static array<CertificateTemplate ^> ^RetrieveAllUserCertificateTemplates();
+			static array<CertificateTemplate ^> ^RetrieveAllMachineCertificateTemplates();
 
 			const System::String ^TemplateName;
 
@@ -24,6 +27,8 @@ namespace GK {
 			const TemplateCategory TemplateType;
 		private:
 			CertificateTemplate(System::String ^templateName, System::String ^templateOID, TemplateCategory templateCategory);
+
+			static array<CertificateTemplate^>^ GK::MSCAWrapper::CertificateTemplate::RetrieveCertificateTemplates(IWebEnrlServer *pWebEnrlServerEnroll, int typeflag4Enumeration, TemplateCategory templateCategory);
 		};
 
 	}

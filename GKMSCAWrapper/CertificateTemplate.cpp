@@ -19,6 +19,39 @@ namespace GK {
 			this->TemplateOID = templateOID;
 		}
 
+		array<CertificateTemplate^>^ GK::MSCAWrapper::CertificateTemplate::RetrieveCertificateTemplates(IWebEnrlServer *pWebEnrlServerEnroll, int typeflag4Enumeration, TemplateCategory templateCategory)
+		{
+			long lngTemplateCount = pWebEnrlServerEnroll->getCertTemplateCount(typeflag4Enumeration);
+
+			array<CertificateTemplate^> ^returnedTemplates = gcnew array<CertificateTemplate ^>(lngTemplateCount);
+
+			for (int i = 0; i < lngTemplateCount; ++i)
+			{
+				System::IntPtr pBstrTemplateName = System::IntPtr::Zero;
+				VARIANT varOID;
+
+				try
+				{
+					BSTR bsCurrentTemplateName = pWebEnrlServerEnroll->enumCertTemplateName(i, typeflag4Enumeration);
+					System::IntPtr pBstrTemplateName = System::IntPtr(bsCurrentTemplateName);
+					System::String ^sCurrentTemplateName = System::Runtime::InteropServices::Marshal::PtrToStringBSTR(pBstrTemplateName);
+
+					varOID = pWebEnrlServerEnroll->getCertTemplateInfo(bsCurrentTemplateName, SCARD_ENROLL_TEMPLATE_INFO_OID);
+					System::String ^sCurrentTemplateOID = (System::String ^)System::Runtime::InteropServices::Marshal::GetObjectForNativeVariant(System::IntPtr(&varOID));
+
+					returnedTemplates[i] = gcnew CertificateTemplate(sCurrentTemplateName, sCurrentTemplateOID, templateCategory);
+				}
+				finally
+				{
+					if (System::IntPtr::Zero != pBstrTemplateName)
+						System::Runtime::InteropServices::Marshal::FreeBSTR(pBstrTemplateName);
+					VariantClear(&varOID);
+				}
+			}
+
+			return returnedTemplates;
+		}
+
 		array<CertificateTemplate^>^ GK::MSCAWrapper::CertificateTemplate::RetrieveAllUserCertificateTemplates()
 		{
 			HRESULT hr;
@@ -34,35 +67,30 @@ namespace GK {
 					(void **)&pWebEnrlServerEnroll);
 				ASSERT_COM_SUCCESS(hr, "Could not create WebEnrlServer object");
 
-				long lngUserTemplateCount = pWebEnrlServerEnroll->getCertTemplateCount(SCARD_ENROLL_USER_CERT_TEMPLATE);
+				return RetrieveCertificateTemplates(pWebEnrlServerEnroll, SCARD_ENROLL_USER_CERT_TEMPLATE, TemplateCategory::USER);
+			}
+			finally
+			{
+				CHECK_COM_NULL_AND_RELEASE(pWebEnrlServerEnroll);
+			}
+		}
 
-				array<CertificateTemplate^> ^userTemplates = gcnew array<CertificateTemplate ^>(lngUserTemplateCount);
+		array<CertificateTemplate^>^ GK::MSCAWrapper::CertificateTemplate::RetrieveAllMachineCertificateTemplates()
+		{
+			HRESULT hr;
+			IWebEnrlServer *pWebEnrlServerEnroll = NULL;
 
-				for (int i = 0; i < lngUserTemplateCount; ++i)
-				{
-					System::IntPtr pBstrTemplateName = System::IntPtr::Zero;
-					VARIANT varOID;
+			try
+			{
+				hr = CoCreateInstance(
+					__uuidof(WebEnrlServer),
+					NULL,
+					CLSCTX_INPROC_SERVER,
+					__uuidof(IWebEnrlServer),
+					(void **)&pWebEnrlServerEnroll);
+				ASSERT_COM_SUCCESS(hr, "Could not create WebEnrlServer object");
 
-					try
-					{
-						BSTR bsCurrentTemplateName = pWebEnrlServerEnroll->enumCertTemplateName(i, SCARD_ENROLL_USER_CERT_TEMPLATE);
-						System::IntPtr pBstrTemplateName = System::IntPtr(bsCurrentTemplateName);
-						System::String ^sCurrentTemplateName = System::Runtime::InteropServices::Marshal::PtrToStringBSTR(pBstrTemplateName);
-
-						varOID = pWebEnrlServerEnroll->getCertTemplateInfo(bsCurrentTemplateName, SCARD_ENROLL_TEMPLATE_INFO_OID);
-						System::String ^sCurrentTemplateOID = (System::String ^)System::Runtime::InteropServices::Marshal::GetObjectForNativeVariant(System::IntPtr(&varOID));
-
-						userTemplates[i] = gcnew CertificateTemplate(sCurrentTemplateName, sCurrentTemplateOID, TemplateCategory::USER);
-					}
-					finally
-					{
-						if (System::IntPtr::Zero != pBstrTemplateName)
-							System::Runtime::InteropServices::Marshal::FreeBSTR(pBstrTemplateName);
-						VariantClear(&varOID);
-					}
-				}
-
-				return userTemplates;
+				return RetrieveCertificateTemplates(pWebEnrlServerEnroll, SCARD_ENROLL_MACHINE_CERT_TEMPLATE, TemplateCategory::MACHINE);
 			}
 			finally
 			{
