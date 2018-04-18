@@ -99,31 +99,49 @@
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <LinkKeyFile>debug-key.snk</LinkKeyFile>
+    <LinkKeyFile>
+    </LinkKeyFile>
+    <LinkDelaySign>
+    </LinkDelaySign>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LinkKeyFile>debug-key.snk</LinkKeyFile>
+    <LinkKeyFile>
+    </LinkKeyFile>
+    <LinkDelaySign>
+    </LinkDelaySign>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <LinkKeyFile>debug-key.snk</LinkKeyFile>
+    <LinkKeyFile>
+    </LinkKeyFile>
+    <LinkDelaySign>
+    </LinkDelaySign>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LinkKeyFile>debug-key.snk</LinkKeyFile>
+    <LinkKeyFile>
+    </LinkKeyFile>
+    <LinkDelaySign>
+    </LinkDelaySign>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <LinkKeyFile>debug-key.snk</LinkKeyFile>
+    <LinkKeyFile>
+    </LinkKeyFile>
+    <LinkDelaySign>
+    </LinkDelaySign>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Remote Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LinkKeyFile>debug-key.snk</LinkKeyFile>
+    <LinkKeyFile>
+    </LinkKeyFile>
+    <LinkDelaySign>
+    </LinkDelaySign>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
