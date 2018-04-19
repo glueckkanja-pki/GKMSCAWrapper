@@ -7,7 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#include "windows.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -33,7 +33,7 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""afxres.h""\r\n"
+    "#include ""windows.h""\r\n"
     "\0"
 END
 
@@ -70,12 +70,12 @@ BEGIN
             VALUE "Comments", "Provides a .NET interface to Microsoft Certificate Services"
             VALUE "CompanyName", "Glück & Kanja Consulting AG"
             VALUE "FileDescription", "Certificate Services Wrapper"
-            VALUE "FileVersion", "1.2.0.0"
+            VALUE "FileVersion", "1.2.0.1"
             VALUE "InternalName", "GKMSCAWrapper"
-            VALUE "LegalCopyright", "Copyright © 2013 Glück & Kanja Consulting AG"
+            VALUE "LegalCopyright", "Copyright © 2018 Glück & Kanja Consulting AG"
             VALUE "OriginalFilename", "GKMSCAWrapper.dll"
             VALUE "ProductName", "GK MS CA Cleaner"
-            VALUE "ProductVersion", "1.2.0.0"
+            VALUE "ProductVersion", "1.2.0.1"
         END
     END
     BLOCK "VarFileInfo"
