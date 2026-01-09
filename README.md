@@ -1,13 +1,14 @@
+> [!IMPORTANT]  
+> This project is archived and is not maintained any longer.
+>
+> The code probably still works (AD CS hasn't changed a lot over the course of the years), but won't receive any new updates or support. Consider moving to a modern PKI like [SCEPman](https://www.scepman.com) if you are still using AD CS.
+
 # GKMSCAWrapper
 .NET wrapper library around ICertAdmin to manage Microsoft Certificate Services (Beta)
 
 ## Examples
 
 The tool [GK MS CA Cleaner](https://github.com/glueckkanja-pki/MSCACleaner) is an example of how to use the library.
-
-## Support
-
-Please open an issue if you have problems using the library GKMSCAWrapper or think you have found a bug. Professional support, including general PKI consulting, is available from [Glück & Kanja](https://www.glueckkanja.com/).
 
 ## Licenses
 
